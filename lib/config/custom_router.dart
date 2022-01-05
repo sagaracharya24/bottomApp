@@ -31,6 +31,7 @@ class CustomRouter {
 
   static Route onGenerateNestedRoute(RouteSettings settings) {
     print('Nested Route: ${settings.name}');
+    // this is where you define the nested routes.
     switch (settings.name) {
       default:
         return _errorRoute();
