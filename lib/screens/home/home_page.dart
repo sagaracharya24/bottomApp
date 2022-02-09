@@ -29,6 +29,8 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: WillPopScope(
         onWillPop: () async {
+          // This is when you want to remove all the pages from the
+          // stack for the specific BottomNav item.
           navigatorKeys[selectedItem]
               ?.currentState
               ?.popUntil((route) => route.isFirst);
