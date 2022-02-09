@@ -27,16 +27,25 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: items
-            .map(
-              (item, _) => MapEntry(
-                item,
-                _buildOffstageNavigator(item, item == selectedItem),
-              ),
-            )
-            .values
-            .toList(),
+      body: WillPopScope(
+        onWillPop: () async {
+          navigatorKeys[selectedItem]
+              ?.currentState
+              ?.popUntil((route) => route.isFirst);
+
+          return false;
+        },
+        child: Stack(
+          children: items
+              .map(
+                (item, _) => MapEntry(
+                  item,
+                  _buildOffstageNavigator(item, item == selectedItem),
+                ),
+              )
+              .values
+              .toList(),
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.white,
